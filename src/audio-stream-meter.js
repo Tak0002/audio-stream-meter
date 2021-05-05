@@ -41,9 +41,10 @@ function onAudioStreamProcess(event) {
 	}
 	
 	var rms =  Math.sqrt(volumeSum / volumeCount);
-	this.volume = Math.max(rms, this.volume * this.config.volumeFall);
-	
-	this.audioProcessCallback();
+	var volume = Math.max(rms, this.volume * this.config.volumeFall);
+	this.volume = volume;
+
+	this.audioProcessCallback(volume);
 };
 
 function close() {
